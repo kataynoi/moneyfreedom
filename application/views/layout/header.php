@@ -16,8 +16,8 @@
         </a>
         <ul class="dropdown-menu dropdown-messages">
             <li>
-                <a href="<?php echo site_url('person_bypass'); ?>">
-                    <div>  <i class="fa fa-save fa-fw"></i> บันทึกข้อมูลด่านตรวจวัดอุณหภูมิ </div>
+                <a href="<?php echo site_url('pay_items'); ?>">
+                    <div>  <i class="fa fa-save fa-fw"></i> รับจ่าย</div>
                 </a>
             </li>
             <li class="divider"></li>

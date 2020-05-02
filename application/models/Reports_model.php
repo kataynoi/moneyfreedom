@@ -53,11 +53,11 @@ class Reports_model extends CI_Model
 
 
 
-    public function get_accident_by_year($year)
+    public function get_pay_month($year='2020')
     {
-        $sql = "SELECT a.m_id,a.fullname,b.total FROM co_month a ";
+        $sql = "SELECT a.m_id,a.fullname,b.total,b.income,b.outcome FROM co_month a ";
         $sql .= " LEFT JOIN ";
-        $sql .= " (SELECT DATE_FORMAT(a.date_accident,'%m') as M,count(*) as total  FROM accident_event a WHERE DATE_FORMAT(a.date_accident,'%Y')='" . $year . "' GROUP BY M) b ON a.m_id=b.M  ORDER BY a.m_id";
+        $sql .= " (SELECT DATE_FORMAT(a.date,'%m') as M, SUM(price) as total,SUM(IF(price >0,price,0)) as income,SUM(IF(price <0,price,0)) as outcome  FROM pay_items a WHERE DATE_FORMAT(a.date,'%Y')='" . $year . "' GROUP BY M) b ON a.m_id=b.M  ORDER BY a.m_id";
         $rs = $this->db->query($sql)->result();
 
         return $rs;

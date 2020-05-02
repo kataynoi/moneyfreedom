@@ -1,22 +1,41 @@
-<div class="col col-lg-6" style="padding-top: 16px;">
-    <iframe width="100%" height="600px" src="https://covid19.th-stat.com/th/share/map" frameBorder="0"></iframe>
-
-</div>
-<div class="col col-lg-6" style="padding-top: 16px;">
-    <iframe width="100%" height="400px" src="https://covid19.th-stat.com/th/share/dashboard" frameBorder="0"></iframe>
-
-</div>
-
-
-<div class='row'>
-    <div class='col col-lg-6'>
-        <div class="panel  panel-default">
-            <div class="panel-heading w3-theme-l1">
-                ข่าวประชาสัมพันธ์
-            </div>
-            <div class="panel-body">
+<br>
+<script src="<?php echo base_url()?>assets/vendor/js/highcharts.js"></script>
+<div class="container">
+    <div class='row'>
+        <div class='col col-lg-12'>
+            <div class='panel panel-info'>
+                <div class="panel-heading"><span class='glyphicon glyphicon-th'></span> กราฟแสดงจำนวนอุบัติเหตุ
                 </div>
+                <div class="navbar navbar-default">
+                    <form action="#" class="navbar-form">
+         <span>ปี
+                 <select id="txt_year" style="width: 180px;" class="form-control">
+                     <?php
+                     $year = date('Y');
+                     for ($i = $year - 5; $i <= $year; $i++) {
+                         if ($i == $year) {
+                             echo "<option value=" . $i . " selected=selected> " . ($i + 543) . " </option>";
+                         } else {
+                             echo "<option value=" . $i . "> " . ($i + 543) . " </option>";
+                         }
+                     }
+                     ?>
+
+                 </select>
+
+             <button class="btn btn-info" id='btn_show_chart'><span class="glyphicon glyphicon-print"></span> แสดงกราฟ
+             </button>
+     </span>
+
+                    </form>
+                </div>
+                <div class='panel-body'>
+                    <div id="disease_year"></div>
+
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 

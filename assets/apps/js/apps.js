@@ -53,6 +53,20 @@ var app = {
         }
     },
 
+    thai_to_datepicker: function (d) {
+        if (!d) {
+            return '-';
+        } else {
+            var date = d.split('/');
+
+            var dd = date[0],
+                mm = date[1],
+                yyyy = parseInt(date[2]) - 543;
+
+            return dd + '/' + mm + '/' + yyyy;
+        }
+    },
+
     count_age: function (d) {
         if (!d) {
             return 0;

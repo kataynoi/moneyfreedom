@@ -20,12 +20,12 @@
                         class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="<?php echo site_url('admin_hospital') ?>"><i
-                                class="fa fa-angle-double-right  "></i> หน่วยบริการ </a>
+                        <a href="<?php echo site_url('admin_account') ?>"><i
+                                class="fa fa-angle-double-right  "></i> บัญชีหลัก </a>
                     </li>
                     <li>
-                        <a href="<?php echo site_url('admin_risk_type') ?>"><i class="fa fa-angle-double-right  "></i>
-                            ประเภทกลุ่มเสี่ยง</a>
+                        <a href="<?php echo site_url('admin_sub_account') ?>"><i class="fa fa-angle-double-right  "></i>
+                            บัญชีย่อย </a>
                     </li>
 
                 </ul>
@@ -33,31 +33,6 @@
 
             </li>
 
-            <li>
-                <a href="<?php echo site_url('excel_import') ?>"><i class="fa fa-bus fa-fw"></i>นำเข้าข้อมูล<span
-                        class="fa arrow"></span>
-                </a>
-                <!-- /.nav-second-level -->
-
-            </li>
-
-            <li>
-                <a href="<?php echo site_url('outsite') ?>"><i class="fa fa-bus fa-fw"></i> ข่าวประชาสัมพพันธ์ News<span
-                        class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                    <li>
-                        <a href="<?php echo site_url('admin_news_category') ?>"><i
-                                class="fa fa-angle-double-right  "></i> หมวดหมู่ ข่าว</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo site_url('') ?>"><i
-                                class="fa fa-angle-double-right  "></i> เพิ่มข่าว</a>
-                    </li>
-
-                </ul>
-                <!-- /.nav-second-level -->
-
-            </li>
             <li>
                 <a href="<?php echo site_url('outsite') ?>"><i class="fa fa-bus fa-fw"></i> Report<span
                         class="fa arrow"></span></a>

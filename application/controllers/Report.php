@@ -37,6 +37,26 @@ class Report extends CI_Controller
         $data['car']= $this->crud->car_inday($ampcode,$date_now);
         $this->layout->view('reports/summary_checkpoint', $data);
     }
+    public function get_pay_month(){
+        $year=$this->input->post('year');
+        $rs     =$this->crud->get_pay_month($year);
+
+
+        $arr_result = array();
+        foreach($rs as $r)
+        {
+            $obj = new stdClass();
+            $obj->m_id      = $r->m_id;
+            $obj->fullname  =$r->fullname;
+            $obj->total     =$r->total;
+            $obj->income     =$r->income;
+            $obj->outcome     =$r->outcome;
+            $obj->median    ='';
+            $arr_result[] = $obj;
+        }
+        $json = $rs ? '{"success": "true", "rows": ' . json_encode($arr_result) . '}' : '{"success": false, "msg": "ไม่พบข้อมูล"}';
+        render_json($json);
+    }
 
 
 }
