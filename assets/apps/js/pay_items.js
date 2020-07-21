@@ -56,6 +56,15 @@ crud.ajax = {
         app.ajax(url, params, function (err, data) {
             err ? cb(err) : cb(null, data);
         });
+    }, get_subaccount: function (account_id, cb) {
+        var url = '/basic/get_subaccount',
+            params = {
+                account_id: account_id
+            }
+        app.ajax(url, params, function(err, data){
+            err ? cb(err) : cb(null, data);
+        })
+
     }
 
 };
@@ -125,8 +134,8 @@ crud.set_after_update = function (items, row_id) {
 }
 crud.set_after_insert = function (items, id) {
 
-    $('<tr name="row' + (id + 1) + '">'+
-        '<td>' + items.id + '</td>' + '<td>' + items.name + '</td>' + '<td>' + items.price + '</td>' + '<td>' + items.account_id + '</td>' + '<td>' + items.subaccount_id + '</td>' + '<td>' + items.date + '</td>' + '<td>' + items.note + '</td>' + '<td>' +  + '</td>' +
+    $('<tr name="row' + (id + 1) + '">' +
+        '<td>' + items.id + '</td>' + '<td>' + items.name + '</td>' + '<td>' + items.price + '</td>' + '<td>' + items.account_id + '</td>' + '<td>' + items.subaccount_id + '</td>' + '<td>' + items.date + '</td>' + '<td>' + items.note + '</td>' + '<td>' + +'</td>' +
         '<td><div class="btn-group pull-right" role="group">' +
         '<button class="btn btn-outline btn-success" data-btn="btn_view" data-id="' + id + '"><i class="fa fa-eye"></i></button>' +
         '<button class="btn btn-outline btn-warning" data-btn="btn_edit" data-id="' + id + '"><i class="fa fa-edit"></i></button>' +
@@ -141,12 +150,25 @@ crud.set_update = function (data, row_id) {
     $("#name").val(data.rows["name"]);
     $("#price").val(data.rows["price"]);
     $("#account_id").val(data.rows["account_id"]);
-    $("#subaccount_id").val(data.rows["subaccount_id"]);
-    $("#necessity").val(data.rows["necessity"]);
+    crud.get_subaccount(data.rows["account_id"],data.rows["subaccount_id"]);
+    //$("#necessity").val(data.rows["necessity"]);
     //$("#date").val(data.rows["date"]);
     $("#date").val(app.mysql_to_thai_date(data.rows["date"]));
     $("#note").val(data.rows["note"]);
     $("#d_update").val(data.rows["d_update"]);
+}
+
+crud.get_subaccount = function (account_id,subaccount_id) {
+    $('#subaccount_id').empty();
+    crud.ajax.get_subaccount(account_id, function (err, data) {
+        if (!err) {
+            $('#subaccount_id').append('<option value="">-*-</option>');
+            _.each(data.rows, function (v) {
+                $('#subaccount_id').append('<option value="' + v.id + '">' + v.name + '</option>');
+            });
+            $("#subaccount_id").val(subaccount_id);
+        }
+    });
 }
 $('#date').datepicker({
     format: 'dd/mm/yyyy',
@@ -190,6 +212,8 @@ $('#add_data').on('click', function (e) {
     $("#frmModal select").prop('disabled', false);
     $("#frmModal textarea").prop('disabled', false);
     $("#frmModal .btn").prop('disabled', false);
+    $('#action').val('insert');
+    $('#id').val('');
     app.clear_form();
     $('.datepicker').datepicker({
         format: 'dd/mm/yyyy',
@@ -277,3 +301,10 @@ function validate(items) {
     }
 
 }
+
+$('#account_id').on('change', function () {
+    var account_id = $(this).val();
+   // alert(account_id);
+    crud.get_subaccount(account_id,'');
+
+});

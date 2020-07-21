@@ -12,13 +12,14 @@ class Pay_items extends CI_Controller
         if (!$this->session->userdata("login"))
             redirect(site_url("user/login"));
         $this->load->model('Pay_items_model', 'crud');
+        $this->load->model('Basic_model', 'basic');
     }
 
     public function index()
     {
         $data[] = '';
         $data["account"] = $this->crud->get_account();
-        $data["sub_account"] = $this->crud->get_sub_account();
+        //$data["sub_account"] = $this->crud->get_sub_account();
         $this->layout->view('pay_items/index', $data);
     }
 
@@ -72,8 +73,16 @@ class Pay_items extends CI_Controller
     public function  save_pay_items()
     {
         $data = $this->input->post('items');
+        $token = $this->get_line_token(2);
+        $pay_type = '';
+        $account = $this->basic->get_account_name($data['account_id']);
+        $sub_account = $this->basic->get_sub_account_name($data['subaccount_id']);
+
+        if($data['price']>1){ $pay_type='รายได้ :';}else{$pay_type = 'รายการจ่าย :';}
         if ($data['action'] == 'insert') {
             $rs = $this->crud->save_pay_items($data);
+            $message = 'เพิ่ม '.$pay_type.' : '.$account.'->'.$sub_account.' :'.$data['name'].' '.$data['price'].' ['.$data['date'].']';
+            $this->notify_message($message, $token);
             if ($rs) {
                 $json = '{"success": true,"id":' . $rs . '}';
             } else {
@@ -81,6 +90,9 @@ class Pay_items extends CI_Controller
             }
         } else if ($data['action'] == 'update') {
             $rs = $this->crud->update_pay_items($data);
+
+            $message = 'แก้ไข '.$pay_type.' : '.$account.'->'.$sub_account.' :'.$data['name'].' '.$data['price'].' ['.$data['date'].']';
+            $this->notify_message($message, $token);
             if ($rs) {
                 $json = '{"success": true}';
             } else {
@@ -99,4 +111,38 @@ class Pay_items extends CI_Controller
         $json = '{"success": true, "rows": ' . $rows . '}';
         render_json($json);
     }
+    public function get_line_token($id)
+    {
+        $rs = $this->basic->get_line_token($id);
+        return $rs;
+
+    }
+    public function notify_message($message, $token)
+    {
+        $str = $message;
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://notify-api.line.me/api/notify",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "message=" . $str,
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer " . $token,
+                "Cache-Control: no-cache",
+                "Content-type: application/x-www-form-urlencoded"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        //console_log($err);
+        curl_close($curl);
+    }
+
 }

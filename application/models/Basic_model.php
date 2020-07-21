@@ -137,4 +137,38 @@ class Basic_model extends CI_Model
         return $rs;
     }
 
+    public function get_subaccount_list($account_id)
+    {
+        $rs = $this->db
+            ->where('account_id', $account_id)
+            ->get('sub_account')
+            ->result();
+        return $rs;
+    }
+    public function get_line_token($id){
+
+        $rs = $this->db
+            ->where('id',$id)
+            ->get('line_token')
+            ->row();
+        return $rs?$rs->token:'';
+    }
+    public function  get_account_name($id){
+
+        $rs = $this->db
+            ->where('id',$id)
+            ->get('account')
+            ->row();
+        return $rs?$rs->name:'';
+    }
+    public function  get_sub_account_name($id){
+
+        $rs = $this->db
+            ->where('id',$id)
+            ->get('sub_account')
+            ->row();
+        return $rs?$rs->name:'';
+    }
+
+
 }

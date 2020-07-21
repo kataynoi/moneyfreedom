@@ -85,11 +85,7 @@
                 <div class="form-group">
                     <label for="subaccount_id">บัญชีย่อย</label>
                     <select class="form-control" id="subaccount_id" placeholder="บัญชีย่อย" value="">
-                        <option>-------</option>
-                        <?php
-                        foreach ($sub_account as $r) {
-                            echo "<option value=$r->id > $r->name </option>";
-                        } ?>
+
                     </select></div>
                 <div class="form-group">
                     <label for="date">วันที่</label>

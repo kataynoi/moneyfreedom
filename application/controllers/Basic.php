@@ -161,6 +161,18 @@ public function check_person_off_id(){
        }
         render_json($json);
     }
+
+    public function get_subaccount()
+    {
+        $account_id = $this->input->post('account_id');
+
+        $rs = $this->basic->get_subaccount_list($account_id);
+        $rows = json_encode($rs);
+
+        $json = '{"success": true, "rows": '.$rows.'}';
+        render_json($json);
+    }
+
 }
 /* End of file basic.php */
 /* Location: ./application/controlers/basic.php */
