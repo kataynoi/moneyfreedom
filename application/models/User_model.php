@@ -22,12 +22,11 @@ class User_model extends CI_Model
         return $rs ;
 
     }
-     function do_auth($username, $password)
+     function do_auth($pin)
     {
         $rs = $this->db
-            ->select('id,name,email,user_type,ampurcode,checkpoint')
-            ->where('username', $username)
-            ->where('password', "PASSWORD('$password')", false)
+            ->select('id,name')
+            ->where('username', $pin)
             ->get('users')
             ->row_array();
         //echo $this->db->last_query();

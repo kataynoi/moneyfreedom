@@ -104,14 +104,13 @@ class User extends CI_Controller
 
     public function do_auth()
     {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $rs = $this->user->do_auth($username, $password);
+        $pin = $this->input->post('pin');
+
+        $rs = $this->user->do_auth($pin);
         //echo $rs['id'];
         if ($rs['id']) {
             $rs['login'] = true;
             $rs['fullname'] = $rs['name'];
-            $rs['user_type'] = $rs['user_type'];
             $this->session->set_userdata($rs);
             $json = '{"success": true, "msg":"" }';
         } else {

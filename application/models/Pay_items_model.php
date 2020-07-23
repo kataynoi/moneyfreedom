@@ -11,7 +11,7 @@ class Pay_items_model extends CI_Model
 {
     var $table = "pay_items";
     var $order_column = Array('id', 'name', 'price', 'account_id', 'subaccount_id', 'date', 'note', 'd_update',);
-
+    var $user_id;
     function make_query()
     {
         $this->db->from($this->table);
@@ -101,7 +101,7 @@ class Pay_items_model extends CI_Model
 
     public function save_pay_items($data)
     {
-
+        $this->user_id = $this->session->userdata('id');
         $rs = $this->db
             ->set("id", $data["id"])
             ->set("name", $data["name"])
@@ -111,6 +111,7 @@ class Pay_items_model extends CI_Model
             ->set("date", to_mysql_date($data["date"]))
             ->set("note", $data["note"])
             ->set("d_update", date('Y-m-d H:m:s'))
+            ->set("user_id", $this->user_id)
             ->insert('pay_items');
 
         return $this->db->insert_id();
@@ -119,6 +120,7 @@ class Pay_items_model extends CI_Model
 
     public function update_pay_items($data)
     {
+        $this->user_id = $this->session->userdata('id');
         $rs = $this->db
             ->set("id", $data["id"])
             ->set("name", $data["name"])
@@ -128,7 +130,7 @@ class Pay_items_model extends CI_Model
             //->set("necessity", $data["necessity"])
             ->set("date", to_mysql_date($data["date"]))
             ->set("note", $data["note"])
-            //->set("d_update", $data["d_update"])
+            ->set("user_id", $this->user_id)
             ->where("id", $data["id"])
             ->update('pay_items');
 

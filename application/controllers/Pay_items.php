@@ -13,6 +13,7 @@ class Pay_items extends CI_Controller
             redirect(site_url("user/login"));
         $this->load->model('Pay_items_model', 'crud');
         $this->load->model('Basic_model', 'basic');
+        $this->user_id = $this->session->userdata('id');
     }
 
     public function index()
