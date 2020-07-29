@@ -111,6 +111,7 @@ class User extends CI_Controller
         if ($rs['id']) {
             $rs['login'] = true;
             $rs['fullname'] = $rs['name'];
+            $rs['user_type'] = $rs['user_type'];
             $this->session->set_userdata($rs);
             $json = '{"success": true, "msg":"" }';
         } else {

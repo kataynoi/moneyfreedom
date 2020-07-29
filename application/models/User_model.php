@@ -25,7 +25,7 @@ class User_model extends CI_Model
      function do_auth($pin)
     {
         $rs = $this->db
-            ->select('id,name')
+            ->select('id,name,user_type')
             ->where('username', $pin)
             ->get('users')
             ->row_array();
