@@ -42,9 +42,9 @@ $(document).ready(function(){
                 app.alert(err);
             }
             else {
-                swal('แก้ไขข้อมูล เรียบร้อยแล้ว');
+                swal('แก้ไขข้อมูล เรียบร้อยแล้ว2');
                 $('#modalEditPassword').modal('hide');
-                window.location = site_url+"user/logout";
+                window.location = site_url+"/user/logout/";
             }
         });
     }

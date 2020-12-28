@@ -236,4 +236,9 @@ $(function(){
         new Highcharts.Chart(options);
     };
     rpt.get_pay_subaccount(year,1);
+    if(app.mobileCheck()){
+        app.alert('Mobile');
+    }else{
+        app.alert('PC');
+    };
 });
