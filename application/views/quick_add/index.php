@@ -1,5 +1,7 @@
 ﻿<br>
-
+<a type="button" class="btn btn-primary" href="<?php echo site_url();?>">Home</a>
+<br>
+<br>
 <?php
 
 foreach ($quick_add as $r) {
@@ -14,6 +16,8 @@ foreach ($quick_add as $r) {
 ?>
 
 <script src="<?php echo base_url() ?>assets/apps/js/quick_add.js" charset="utf-8"></script>
+
+
 
 <div class="modal fade" id="quick_add_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">

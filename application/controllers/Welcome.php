@@ -7,8 +7,8 @@ class Welcome extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-/*        if (empty($this->session->userdata("user_type")))
-            redirect(site_url("user/login"));*/
+        if (!$this->session->userdata("login"))
+            redirect(site_url("user/login"));
         $this->layout->setLayout('default_layout');
         $this->db = $this->load->database('default', true);
         $this->load->model('Basic_model', 'crud');

@@ -10,6 +10,11 @@
             <i class="fa fa-home fa-fw"></i> Home
         </a>
     </li>
+    <li class="dropdown">
+        <a href="<?php echo base_url('/index.php/quick_add'); ?>">
+            <i class="fa fa-home fa-fw"></i> Quick_add
+        </a>
+    </li>
 
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
