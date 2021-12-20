@@ -299,7 +299,6 @@ function validate(items) {
     else {
         return true;
     }
-
 }
 
 $('#account_id').on('change', function () {

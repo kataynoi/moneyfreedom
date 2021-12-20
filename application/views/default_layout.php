@@ -39,26 +39,26 @@
 
     <!-- Custom Fonts -->
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Kanit');
+    @import url('https://fonts.googleapis.com/css?family=Kanit');
     </style>
 </head>
 <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
 <style>
-    body {
-        font-family: 'Kanit', sans-serif;
-        font-size: 100%;
-    }
+body {
+    font-family: 'Kanit', sans-serif;
+    font-size: 100%;
+}
 </style>
 <!-- Custom Fonts -->
 
 <!-- jQuery -->
 <script>
-    $('#left_menu').hide();
+$('#left_menu').hide();
 </script>
 <style>
-    #page-wrapper {
-        margin-left: 0px;
-    }
+#page-wrapper {
+    margin-left: 0px;
+}
 </style>
 
 <!-- Bootstrap Core JavaScript -->
@@ -80,46 +80,48 @@
 <script src="<?php echo base_url()?>assets/vendor/js/bootstrap-datepicker-custom.js"></script>
 <script src="<?php echo base_url()?>assets/vendor/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script> -->
+
 <script src="<?php echo base_url()?>assets/vendor/js/jquery.blockUI.js"></script>
 <script src="<?php echo base_url()?>assets/apps/js/apps.js"></script>
 <script type="text/javascript" charset="utf-8">
-    var site_url = '<?php echo site_url()?>';
-    var base_url = '<?php echo base_url()?>';
-    var user_id =  '<?php echo $this->session->userdata('id')?>';
-    var user_name =  '<?php echo $this->session->userdata('fullname')?>';
-    var year    ='<?php echo date('Y');?>'
-    var csrf_token = '<?php echo $this->security->get_csrf_hash(); ?>';
+var site_url = '<?php echo site_url()?>';
+var base_url = '<?php echo base_url()?>';
+var user_id = '<?php echo $this->session->userdata('id')?>';
+var user_name = '<?php echo $this->session->userdata('fullname')?>';
+var year = '<?php echo date('Y');?>'
+var csrf_token = '<?php echo $this->security->get_csrf_hash(); ?>';
 </script>
-<body >
 
-<div id="wrapper">
+<body>
 
-    <!-- Navigation -->
-    <nav class="navbar w3-theme" role="" style="margin-bottom: 0;">
-        <div >
-            <?php echo $header_for_layout?>
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar w3-theme" role="" style="margin-bottom: 0;">
+            <div>
+                <?php echo $header_for_layout?>
+            </div>
+            <!-- /.navbar-static-side -->
+            <div id="left_menu" style="padding-left: 2%;border: 0px;">
+                <?php echo $left_for_layout?>
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+        <div>
+            <div id="page-wrapper" style="padding-left: 3%;border: 0px;">
+                <!-- <button id="hide_left" data-show="true">Hide</button>-->
+                <?php echo $content_for_layout?>
+            </div>
         </div>
-        <!-- /.navbar-static-side -->
-        <div id="left_menu" style="padding-left: 2%;border: 0px;">
-            <?php echo $left_for_layout?>
+        <div>
+            <?php echo $footer_for_layout?>
         </div>
-        <!-- /.navbar-static-side -->
-    </nav>
-    <div>
-        <div id="page-wrapper" style="padding-left: 3%;border: 0px;">
-           <!-- <button id="hide_left" data-show="true">Hide</button>-->
-            <?php echo $content_for_layout?>
-        </div>
+
+        <!-- /#page-wrapper -->
+
     </div>
-    <div>
-        <?php echo $footer_for_layout?>
-    </div>
-
-    <!-- /#page-wrapper -->
-
-</div>
-<div id="freeow" class=" freeow freeow-info freeow-bottom-right"></div>
+    <div id="freeow" class=" freeow freeow-info freeow-bottom-right"></div>
 </body>
 
 </html>
-

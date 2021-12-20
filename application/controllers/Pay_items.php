@@ -74,7 +74,7 @@ class Pay_items extends CI_Controller
     public function  save_pay_items()
     {
         $data = $this->input->post('items');
-        $token = $this->get_line_token(2);
+        $token = $this->get_line_token(1);
         $pay_type = '';
         $account = $this->basic->get_account_name($data['account_id']);
         $sub_account = $this->basic->get_sub_account_name($data['subaccount_id']);
@@ -145,5 +145,12 @@ class Pay_items extends CI_Controller
         //console_log($err);
         curl_close($curl);
     }
+
+public function quick_pay(){
+    $data[] = '';
+    //$data["account"] = $this->crud->get_account();
+    //$data["sub_account"] = $this->crud->get_sub_account();
+    $this->layout->view('pay_items/quick_pay', $data);
+}
 
 }

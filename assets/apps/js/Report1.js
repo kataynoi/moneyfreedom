@@ -1,5 +1,11 @@
 $(document).ready(function() {
-    var dataTable = $('#table_data').DataTable({
+    $('#get_data').on('click',function(){
+        CalldataTable(1);
+    });
+    //CalldataTable();
+});
+
+    CalldataTable = function(param1=null) { $('#table_data').DataTable({
         'createdRow': function (row, data, dataIndex) {
                     $(row).attr('name', 'row'+dataIndex);
          },
@@ -26,7 +32,8 @@ $(document).ready(function() {
         "ajax": {
             url: site_url + '/report1/fetch_report1',
            data: {
-                           'csrf_token': csrf_token
+                           'csrf_token': csrf_token,
+                           'param1':param1
                        },
                        type: "POST"
                    },
@@ -36,7 +43,7 @@ $(document).ready(function() {
                    "paging": false,"searching": false
                });
 
-           });
+            }    
 
 
 

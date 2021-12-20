@@ -101,16 +101,19 @@ class Pay_items_model extends CI_Model
 
     public function save_pay_items($data)
     {
+        if($data["date"]==""){
+            $data["date"] = to_thai_date(date('Y-m-d'));
+
+        }
         $this->user_id = $this->session->userdata('id');
         $rs = $this->db
-            ->set("id", $data["id"])
             ->set("name", $data["name"])
             ->set("price", $data["price"])
             ->set("account_id", $data["account_id"])
             ->set("subaccount_id", $data["subaccount_id"])
             ->set("date", to_mysql_date($data["date"]))
             ->set("note", $data["note"])
-            ->set("d_update", date('Y-m-d H:m:s'))
+            ->set("d_update", date('Y-m-d H:i:s'))
             ->set("user_id", $this->user_id)
             ->insert('pay_items');
 

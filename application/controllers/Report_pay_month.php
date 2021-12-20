@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Report1 extends CI_Controller
+class Report_pay_month extends CI_Controller
 {
     public $user_id;
     public function __construct()
@@ -9,26 +9,28 @@ class Report1 extends CI_Controller
         parent::__construct();
 
                 
-        $this->load->model('Report1_model', 'crud');
+        $this->load->model('Report_pay_month_model', 'crud');
     }
 
     public function index()
     {
         $data[] = '';
-        
-        $this->layout->view('reports/report1', $data);
+        $data["account"] = $this->crud->get_account();
+        $this->layout->view('reports/report_pay_month', $data);
     }
 
 
-    function fetch_report1()
+    function fetch_report_pay_month()
     {
-        $fetch_data = $this->crud->make_datatables();
+        $id = $this->input->post('param1');
+        $m = $this->input->post('param2');
+        $fetch_data = $this->crud->make_datatables($id,$m);
         $data = array();
         foreach ($fetch_data as $row) {
 
 
             $sub_array = array();
-                $sub_array[] = $row->account;$sub_array[] = $row->subaccount_id;$sub_array[] = $row->sum;
+                $sub_array[] = $row->account;$sub_array[] = $row->subaccount_id;$sub_array[] = $row->sum;$sub_array[] = $row->account;
                 $data[] = $sub_array;
         }
         $output = array(
@@ -37,10 +39,10 @@ class Report1 extends CI_Controller
         echo json_encode($output);
     }
 
-    public function  get_report1()
+    public function  get_report_pay_month()
     {
                 $id = $this->input->post('id');
-                $rs = $this->crud->get_report1($id);
+                $rs = $this->crud->get_report_pay_month($id);
                 $rows = json_encode($rs);
                 $json = '{"success": true, "rows": ' . $rows . '}';
                 render_json($json);
