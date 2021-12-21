@@ -5,13 +5,14 @@
 <?php
 
 foreach ($quick_add as $r) {
+echo "<div class='col-xs-6 col-md-4'>";
   echo "<button class='btn btn-info' data-btn='btn_quick_add' ";
   echo " data-name='".$r->name."'";
   echo " data-price='".$r->price."'";
   echo " data-account_id='".$r->account_id."'";
   echo " data-subaccount_id='".$r->subaccount_id."'";
   echo "data-toggle='modal' data-target='#quick_add_modal' >";
-  echo $r->shortname . "</button> ";
+  echo $r->shortname . "</button></div><br> ";
 }
 ?>
 
@@ -32,9 +33,11 @@ foreach ($quick_add as $r) {
             <div class="modal-body">
                 <form>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Recipient:</label>
+                        <label for="recipient-name" class="col-form-label">รายการ:</label>
+                        <input type="text" class="form-control" id="name">
+                        <label for="recipient-name" class="col-form-label">ราคา:</label>
                         <input type="text" class="form-control" id="price"><br>
-                        <input type="hidden" class="form-control" id="name">
+
 
                         <input type="hidden" class="form-control" id="account_id">
                         <input type="hidden" class="form-control" id="subaccount_id">
