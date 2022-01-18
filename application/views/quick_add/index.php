@@ -4,13 +4,13 @@
 
 <?php
 echo "<table class='table '>";
-$n=1;$font_size=150;
+$n=1;$font_size=160;
 echo "<tr>";
 $bg_colors = array("#29b6f6","#73e8ff","#4db6ac","#82e9de","#00867d","#66bb6a","#98ee99","#e6ceff","#f8bbd0","#ffeeff","#c48b9f");
 foreach ($quick_add as $r) 
     {
         $n_color = $bg_colors[Rand(0,10)];
-        if($font_size>=80){
+        if($font_size>=60){
             $font_size = $font_size-5;
         }
         if($n % 3==1){echo "<tr>";}

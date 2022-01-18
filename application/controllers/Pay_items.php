@@ -75,7 +75,7 @@ class Pay_items extends CI_Controller
     {
         $data = $this->input->post('items');
         $quick_id = $this->input->post('quick_id');
-        $token = $this->get_line_token(1);
+        $token = $this->get_line_token(2);
         $pay_type = '';
         $account = $this->basic->get_account_name($data['account_id']);
         $sub_account = $this->basic->get_sub_account_name($data['subaccount_id']);
