@@ -141,6 +141,19 @@ class Pay_items_model extends CI_Model
 
     }
 
+
+    public function add_quick_add($id)
+    {
+       
+        $rs = $this->db
+            ->set("pay_times","pay_times+1",false )
+            ->where("id", $id)
+            ->update('quick_add');
+
+        return $rs;
+
+    }
+
     public function get_pay_items($id)
     {
         $rs = $this->db

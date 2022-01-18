@@ -74,6 +74,7 @@ class Pay_items extends CI_Controller
     public function  save_pay_items()
     {
         $data = $this->input->post('items');
+        $quick_id = $this->input->post('quick_id');
         $token = $this->get_line_token(1);
         $pay_type = '';
         $account = $this->basic->get_account_name($data['account_id']);
@@ -82,6 +83,9 @@ class Pay_items extends CI_Controller
         if($data['price']>1){ $pay_type='รายได้ :';}else{$pay_type = 'รายการจ่าย :';}
         if ($data['action'] == 'insert') {
             $rs = $this->crud->save_pay_items($data);
+            if(isset($quick_id)){
+                $this->crud->add_quick_add($quick_id);
+            }
             $message = 'เพิ่ม '.$pay_type.' : '.$account.'->'.$sub_account.' :'.$data['name'].' '.$data['price'].' ['.$data['date'].']';
             $this->notify_message($message, $token);
             if ($rs) {
