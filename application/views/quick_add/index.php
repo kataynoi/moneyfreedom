@@ -4,16 +4,19 @@
 
 <?php
 echo "<table class='table '>";
-$n=1;
+$n=1;$font_size=150;
 echo "<tr>";
 $bg_colors = array("#29b6f6","#73e8ff","#4db6ac","#82e9de","#00867d","#66bb6a","#98ee99","#e6ceff","#f8bbd0","#ffeeff","#c48b9f");
 foreach ($quick_add as $r) 
     {
         $n_color = $bg_colors[Rand(0,10)];
+        if($font_size>=80){
+            $font_size = $font_size-5;
+        }
         if($n % 3==1){echo "<tr>";}
         echo "<td bgcolor='".$n_color."' data-btn='btn_quick_add' data-id='".$r->id."' data-name='".$r->name."' 
         data-price='".$r->price."' data-account_id='".$r->account_id."' data-subaccount_id='".$r->subaccount_id."'
-        data-toggle='modal' data-target='#quick_add_modal' >".$r->name."</td>";
+        data-toggle='modal' data-target='#quick_add_modal' ><span style='font-size:".$font_size."%'>".$r->name."</span></td>";
         if($n % 3==0){echo "</tr>";}
         $n++;
     }
