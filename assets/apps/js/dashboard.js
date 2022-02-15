@@ -222,6 +222,6 @@ $(function () {
   };
   rpt.get_pay_subaccount(year, 1);
   if (app.mobileCheck()) {
-    window.location.replace(site_url + "/quick_add");
+    //window.location.replace(site_url + "/quick_add");
   }
 });

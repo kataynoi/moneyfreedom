@@ -103,7 +103,6 @@ class Pay_items_model extends CI_Model
     {
         if($data["date"]==""){
             $data["date"] = to_thai_date(date('Y-m-d'));
-
         }
         $this->user_id = $this->session->userdata('id');
         $rs = $this->db
