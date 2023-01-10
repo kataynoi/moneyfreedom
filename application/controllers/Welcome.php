@@ -20,21 +20,8 @@ class Welcome extends CI_Controller
         $today = date('Y-m-d');
         $stat_date = date("Y-m-")."01";
         $end_date = date("Y-m-t", strtotime($today));
-// อาหารในครอบครัว
-        $data['items1'] = $this->db
-            ->select('SUM(price) as items1')
-            ->where("DATE_FORMAT(date,'%Y-%m-%d')  BETWEEN '".$stat_date."' AND '".$end_date."'")
-            ->where('subaccount_id','2')
-            ->get('pay_items')
-            ->row();
-//ค่าน้ำมัน
-        $data['items2'] = $this->db
-            ->select('SUM(price) as items2')
-            ->where("DATE_FORMAT(date,'%Y-%m-%d')  BETWEEN '".$stat_date."' AND '".$end_date."'")
-            ->where_in('subaccount_id','3,4,12')
-            ->get('pay_items')
-            ->row();
-        $this->layout->view('dashboard/index_view', $data);
+        $data["subaccount"]= "";
+        $this->layout->view('dashboard/index_view2', $data);
     }
     public function test(){
         $data[]='';

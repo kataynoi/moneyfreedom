@@ -5,7 +5,7 @@ $(function () {
     var items = {};
     items.action = "insert";
     quick_id = $("#id").val();
-    items.date = "";
+    items.date = $("#date").val();
     items.name = $("#name").val();
     items.price = $("#price").val();
     items.account_id = $("#account_id").val();
@@ -45,15 +45,20 @@ crud.save_quick_add = function (items,quick_id) {
 
 $(document).on("click", 'td[data-btn="btn_quick_add"]', function (e) {
   e.preventDefault();
+ 
   var quick_id = $(this).data("id");
   var name = $(this).data("name");
+  var date = $(this).data("date");
   var price = $(this).data("price");
   var account_id = $(this).data("account_id");
   var subaccount_id = $(this).data("subaccount_id");
 
+  $("#note").val("");
   $("#name").val(name);
   $("#id").val(quick_id);
+  $("#id").val(quick_id);
   $("#txt_name").html(name);
+  $("#date").html(name);
   $("#price").val(price);
   $("#account_id").val(account_id);
   $("#subaccount_id").val(subaccount_id);

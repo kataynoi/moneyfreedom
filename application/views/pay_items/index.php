@@ -117,14 +117,3 @@ $(document).ready(function() {
 
 
     <script src="<?php echo base_url() ?>assets/apps/js/pay_items.js" charset="utf-8"></script>
-
-    <!--         foreach ($invit_type as $r) {
-                                if ($outsite["invit_type"] == $r->id) {
-                                    $s = "selected";
-                                } else {
-                                    $s = "";
-                                }
-                                echo "<option value=" $r->id" $s > $r->name </option>";
-
-}
--->

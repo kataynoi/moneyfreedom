@@ -1,4 +1,6 @@
 ﻿<br>
+<link href="<?php echo base_url()?>assets/vendor/css/bootstrap-datepicker.css" rel="stylesheet" />
+<script src="<?php echo base_url()?>assets/vendor/js/bootstrap-datepicker.th.min.js" charset="UTF-8"></script>
 <a type="button" class="btn btn-primary" href="<?php echo site_url();?>">Home</a>
 <br>
 
@@ -53,6 +55,10 @@ foreach ($quick_add as $r)
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">note:</label>
                         <textarea class="form-control" id="note"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">วันที่</label>
+                        <input id="date" class="form-control datepicker" data-date-format="mm/dd/yyyy" value="<?php echo date('d/m/').(DATE('Y')+543); ?>">
                     </div>
                 </form>
             </div>
